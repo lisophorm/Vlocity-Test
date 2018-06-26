@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-9 col-md-push-3">
+        <user-widget class="pull-right avatar"></user-widget>
+    </div>
+    <div class="col-md-3 col-md-pull-9">
+        <my-search-box search-text="userSearchText"></my-search-box>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="row " ng-repeat="user in queryResult.People | filter:filterFunction">
+            <div class="col-md-12">
+                <user-button ng-click="callUser($index)">{{user.name}}</user-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <user-record ng-if="selectedRecordIndex>=0"
+                     my-update="fakeCallFromController(queryResult.People[selectedRecordIndex])"
+                     user-data="queryResult.People[selectedRecordIndex]"></user-record>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute']);
+var app = angular.module('myApp', ['ngRoute','ui.bootstrap']);
 
 
 app.config(function($locationProvider,$routeProvider) {
@@ -15,11 +15,14 @@ app.config(function($locationProvider,$routeProvider) {
 
 // create the controller and inject Angular's $scope
 app.controller('mainController', function($scope,userService) {
-    // create a message to display in our view
-    console.log('main controller');
+
     $scope.queryResult={};
     $scope.userSearchText="";
     $scope.selectedRecordIndex=-1;
+
+    $scope.fakeCallFromController=function(userData) {
+        alert('calling user'+userData.name);
+    }
 
     $scope.filterFunction = function(element) {
         var result=element.name.match(new RegExp($scope.userSearchText,'i'));
@@ -32,13 +35,12 @@ app.controller('mainController', function($scope,userService) {
 
     $scope.callUser=function(id) {
         $scope.selectedRecordIndex=id;
-        console.log('calling user',id);
     }
+
     userService.getAllUsers().then(function(response){
         $scope.queryResult=response;
-        console.log('response is',response);
     });
-    $scope.message = 'Everyone come and see how good I look!';
+
 });
 
 

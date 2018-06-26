@@ -1,3 +1,5 @@
+*** Running exercise at https://github.com/lisophorm?tab=repositories ***
+
 Your task is to implement the following UI using Angular 1.6.x, JavaScript, CSS and HTML5.
 
 Mockup image: https://www.dropbox.com/s/21r6c10bpr0naud/vlocity-code-challenge-screenshot.PNG?dl=0

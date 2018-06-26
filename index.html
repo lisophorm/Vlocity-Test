@@ -1,22 +1,123 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css" />
-    <script data-require="angularjs@1.6.4" data-semver="1.6.4" src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script data-require="angularjs@1.6.4" data-semver="1.6.4"
+            src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.6.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-touch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+
+    <!-- the core scripts - divided for approx functionality -->
+
     <script src="script.js"></script>
     <script src="service.js"></script>
     <script src="directives.js"></script>
 </head>
 
 <body>
-<div ng-view></div>
+<div class="container-fluid" ng-view></div>
+
+<!--                                                                -->
+<!--             all the templates used by the directives           -->
+<!--                                                                -->
+<script type="text/ng-template" id="userWidget.html">
+    <div class="input-container">
+        <div class="btn-group" uib-dropdown dropdown-append-to-body>
+            <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                <i class="fas fa-user"></i> User Name <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                <li role="menuitem"><a href="#">Action</a></li>
+                <li role="menuitem"><a href="#">Another action</a></li>
+                <li role="menuitem"><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">Separated link</a></li>
+            </ul>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="userButton.html">
+    <button class="btn btn-default btn-block" type="button">
+        <span class="pull-left" ng-transclude></span>
+        <i class="fa fa-angle-right pull-right"></i>
+    </button>
+</script>
 <script type="text/ng-template" id="templateUrl-partial.html">
-    <h1>I am big cheese</h1>
-    <p>{{userData.name}} - {{userData.rating}}</p>
-    <div star-rating rating-value="userData.rating" max="5" on-rating-selected="alert('ciao')"></div>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{userData.img}}" class="img-fluid img-rounded avatar">
+
+        </div>
+        <div class="col-md-3">
+            <div star-rating rating-value="userData.rating" max="5"></div>
+            <user-button ng-click="fakeCall(userData)">Send Message!</user-button>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"><p>&nbsp;</p>
+            <p>{{userData.Description}}</p></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6 nopadding">
+                <table>
+                    <thead>
+                    <th>
+                        Likes
+                    </th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="like in userData.Likes">
+                        <td>{{userData.Likes[$index]}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 nopadding">
+                <table>
+                    <thead>
+                    <th>
+                        Dislikes
+                    </th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="like in userData.Likes">
+                        <td>{{userData.Dislikes[$index]}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</script>
+<script type="text/ng-template" id="templateSearch.html">
+    <form>
+        <div class="input-container">
+            <i class="far fa-window-close icon" ng-click="clearSearch()"></i>
+            <input class="input-field" ng-keypress="pressedKey($event)" ng-model="localSearchText" type="text"/>
+            <i class="fas fa-search icon" ng-click="doSearch()"></i>
+        </div>
+    </form>
 </script>
 </body>
 

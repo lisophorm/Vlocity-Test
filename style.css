@@ -1,23 +1,134 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* rating directive */
+
 .rating {
-  color: #a9a9a9;
-  margin: 0;
-  padding: 0;
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
 }
+
 ul.rating {
-  display: inline-block;
+    display: inline-block;
 }
+
 .rating li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 1px;
-  text-align: center;
-  font-weight: bold;
-  cursor: pointer;
-  font-size:20px;
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
 }
+
 .rating .filled {
-  color: orangered;
+    color: orangered;
 }
-.clear{
-  margin-top:20px;
+
+.clear {
+    margin-top: 20px;
+}
+
+/* search field */
+
+/* Style the input container */
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Style the form icons */
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Style the input fields */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn {
+    background-color: dodgerblue;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+.img-fluid {
+    height: auto;
+    width: 100%;
+}
+
+/* alternate row table */
+
+/*Responsive table*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(183, 227, 178, 0.22);
+    color: #000000;
+}
+
+td, th {
+    padding: 8px;
+    text-align: left;
+}
+
+tr:nth-of-type(odd) {
+    background: #eeeeee;
+}
+
+th {
+    background: #cccccc;
+    font-weight: bold;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+@media (min-width: 768px ) {
+    .avatar {
+        margin-top: 0;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .avatar {
+        margin-top: 15px;
+    }
+}
+
+.separator {
+    padding-bottom: 20px;
+}
+
+.pull-right {
+    float: right !important;
 }
